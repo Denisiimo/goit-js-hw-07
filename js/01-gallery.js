@@ -6,9 +6,9 @@ const cardCreateEvt = cardCreate(galleryItems);
 galleryRef.insertAdjacentHTML('beforeend', cardCreateEvt);
 galleryRef.addEventListener('click', ModalOpen);
 
-function ModalOpen(e) {
-    e.preventDefault();
-    const { nodeName, dataset } = e.target;
+function ModalOpen(ea) {
+    ea.preventDefault();
+    const { nodeName, dataset } = ea.target;
     nodeName === IMG_NODE && showModal(dataset.source);
 }
 
