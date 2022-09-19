@@ -1,18 +1,21 @@
 import { galleryItems } from './gallery-items.js';
+const ESC_KEY = "Escape";
 const IMG_NODE = "IMG";
 const galleryRef = document.querySelector('.gallery');
 const cardCreateEvt = cardCreate(galleryItems);
 galleryRef.insertAdjacentHTML('beforeend', cardCreateEvt);
 galleryRef.addEventListener('click', ModalOpen);
 
-function ModalOpen(evt) {
-    evt.preventDefault();
-    const { nodeName, dataset } = evt.target;
+function ModalOpen(e) {
+    e.preventDefault();
+    const { nodeName, dataset } = e.target;
     nodeName === IMG_NODE && showModal(dataset.source);
 }
 
 function showModal(src) {
-    const modalClose = () => {};
+    const modalClose = ({ code }) => {
+        code === ESC_KEY && modal.close();
+    };
     const modalLayout = `<img src="${src}">`;
     const modalOptions = {
         onShow: () => {
